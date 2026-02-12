@@ -139,3 +139,23 @@ p {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 
 }
+/* 1. Give the letter more room to grow */
+.open .letter {
+    transform: translateY(-200px); /* Slides up a bit higher */
+    height: 350px; /* Increased from 320px to fit the signature */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* 2. Control the spacing of your message lines */
+.letter p {
+    margin: 5px 0; /* Shrinks the default gaps between lines so everything fits */
+    font-size: 0.85rem;
+}
+
+/* 3. Style the specific "I love you" signature */
+#line5 {
+    margin-top: 2px !important;
+    font-size: 0.95rem !important;
+    font-family: 'Georgia', serif; /* Gives it a more personal 'handwritten' feel */
+}
+
