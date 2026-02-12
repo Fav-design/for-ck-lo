@@ -1,4 +1,4 @@
-/* General Background - Deep Navy & Slate */
+/* General Background */
 body {
     background-color: #1a1a2e;
     background-image: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
@@ -8,154 +8,91 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow: hidden;
 }
 
-/* The Envelope Body - Royal Blue */
+/* The Envelope - Deep Royal Blue */
 .envelope {
-    width: 250px;
-    height: 180px;
+    width: 280px;
+    height: 200px;
     background-color: #0d47a1; 
     position: relative;
     cursor: pointer;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    transition: 0.5s;
 }
 
-/* The Top Flap */
+/* The Top Flap - Slow Flip (1.8s) */
 .envelope::before {
     content: '';
     position: absolute;
     top: 0;
     z-index: 3;
-    border-left: 125px solid transparent;
-    border-right: 125px solid transparent;
-    border-top: 100px solid #1565c0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 110px solid #1565c0;
     transform-origin: top;
-    transition: all 0.5s ease-in-out;
+    transition: transform 1.8s ease-in-out;
 }
 
-/* When Open - Flap flips up */
+/* Flip the flap up when opened */
 .open.envelope::before {
     transform: rotateX(180deg);
     z-index: 0;
 }
 
-/* The Letter Inside - Adjusted for more text */
+/* The Letter - Slow Rise (2.5s) */
 .letter {
     position: absolute;
-    top: 10px; 
+    top: 5px; 
     left: 10px;
-    width: 230px;
-    height: 160px; /* Initial height while hidden */
+    width: 260px;
+    height: 180px;
     background: #ffffff;
-    padding: 20px;
+    padding: 15px; /* Slightly tighter padding for more space */
     box-sizing: border-box;
     text-align: center;
-    transition: transform 0.8s ease-in-out, height 0.8s;
     z-index: 1;
     border-radius: 5px;
     transform: translateY(0);
+    transition: transform 2.5s ease-in-out, height 2.5s ease-in-out;
 }
 
-/* When Open - Letter slides UP high enough to see Hoai Loa */
+/* This is the "Magic" part - Makes the letter tall enough for the signature */
 .open .letter {
-    transform: translateY(-160px); 
-    height: 280px; /* Increased height to fit all your text */
+    transform: translateY(-210px); /* Slides higher to reveal everything */
+    height: 360px; /* Tall enough for "I love you" */
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-h2 {
-    color: #0d47a1;
-    margin: 0 0 5px 0;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-}
+/* Spacing out the lines for Hoai Loa & Signature */
+h2 { color: #0d47a1; margin: 0 0 5px 0; font-size: 1.1rem; }
+p { color: #333; font-size: 0.85rem; line-height: 1.4; margin: 4px 0; }
 
-p {
-    color: #333;
-    font-size: 0.85rem; /* Slightly smaller font to fit all lines comfortably */
-    line-height: 1.4;
-    margin: 8px 0;
+/* The Signature & Rose Styling */
+#final-signature {
+    margin-top: 10px;
 }
 
 .flower-icon {
     font-size: 35px;
-    display: block;
-    margin-top: 10px;
+    margin: 5px 0;
 }
 
-/* Floating Heart Animation */
+#line5 {
+    font-weight: bold;
+    color: #d32f2f;
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+/* Heart Animation */
 .floating-heart {
     position: fixed;
     top: 100vh;
     font-size: 25px;
     pointer-events: none;
-    transition: transform 3s linear, opacity 3s;
+    transition: transform 3.5s linear, opacity 3.5s;
     z-index: 10;
 }
-.open .letter {
-    transform: translateY(-160px); 
-    height: 280px; /* Space for Hoai Loa's name and the message */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-/* The Top Flap - Slowed down to 1.5 seconds */
-.envelope::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    z-index: 3;
-    border-left: 125px solid transparent;
-    border-right: 125px solid transparent;
-    border-top: 100px solid #1565c0;
-    transform-origin: top;
-    transition: all 1.5s ease-in-out; /* Slowed down for Ck Lo */
-}
-
-/* The Letter Inside - Slowed down to 2 seconds */
-.letter {
-    position: absolute;
-    top: 10px; 
-    left: 10px;
-    width: 230px;
-    height: 160px;
-    background: #ffffff;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    /* Transition set to 2 seconds for a "rising" effect */
-    transition: transform 2.0s ease-in-out, height 2.0s ease-in-out; 
-    z-index: 1;
-    border-radius: 5px;
-    transform: translateY(0);
-}
-
-/* When Open - Letter slides UP slowly */
-.open .letter {
-    transform: translateY(-160px); 
-    height: 280px; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-
-}
-/* 1. Give the letter more room to grow */
-.open .letter {
-    transform: translateY(-200px); /* Slides up a bit higher */
-    height: 350px; /* Increased from 320px to fit the signature */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* 2. Control the spacing of your message lines */
-.letter p {
-    margin: 5px 0; /* Shrinks the default gaps between lines so everything fits */
-    font-size: 0.85rem;
-}
-
-/* 3. Style the specific "I love you" signature */
-#line5 {
-    margin-top: 2px !important;
-    font-size: 0.95rem !important;
-    font-family: 'Georgia', serif; /* Gives it a more personal 'handwritten' feel */
-}
-
