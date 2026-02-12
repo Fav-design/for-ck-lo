@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="co.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise for Ck Lo ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="envelope" id="gift" onclick="openGift()">
+        <div class="letter">
+            <h2 id="line1"></h2>
+            <p id="line2"></p>
+            <p><strong id="line3"></strong></p>
+            <p id="line4" style="margin-top: 15px; font-style: italic; color: #0d47a1;"></p>
+            <div class="flower-icon" id="flower" style="display:none;">🌹</div>
+        </div>
+    </div>
+
+    <p id="tap-hint" style="color: rgba(255,255,255,0.6); margin-top: 20px; font-size: 0.8rem; transition: 0.5s;">
+        (Tap the envelope to open)
+    </p>
+
+    <audio id="loveSong" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="hearts" id="heartContainer"></div>
+
+    <script>
+        const textData = {
+            line1: "For Ck Lo ❤️",
+            line2: "You’re one of a kind. Wishing you a day as great as you are!",
+            line3: "Happy Val my heart",
+            line4: "— From Hoai Loa"
+        };
+
+        function typeWriter(elementId, text, speed, callback) {
+            let i = 0;
+            const element = document.getElementById(elementId);
+            element.innerHTML = "";
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        function openGift() {
+            const gift = document.getElementById('gift');
+            const song = document.getElementById('loveSong');
+            const hint = document.getElementById('tap-hint');
+            
+            if (gift.classList.contains('open')) return;
+
+            gift.classList.add('open');
+            if (hint) hint.style.opacity = '0';
+            
+            // Starts the music when the envelope is opened
+            if (song) {
+                song.play().catch(e => console.log("Music blocked until tap."));
+            }
+
+            // Starts typing the message for Ck Lo
+            setTimeout(() => {
+                typeWriter("line1", textData.line1, 50, () => {
+                    typeWriter("line2", textData.line2, 40, () => {
+                        typeWriter("line3", textData.line3, 50, () => {
+                            typeWriter("line4", textData.line4, 50, () => {
+                                document.getElementById('flower').style.display = 'block';
+                            });
+                        });
+                    });
+                });
+            }, 800);
+
+            // Pop-up hearts animation
+            for(let i=0; i<15; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️'; 
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.style.transform = `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
+                heart.style.opacity = '0';
+            }, 100);
+            setTimeout(() => heart.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
